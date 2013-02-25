@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans       
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- 邮件发送者 -->
+	<bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.sina.com"/>
+		<property name="username" value="baizhi_bj" />
+		<property name="password" value="baizhi" />
+		<property name="javaMailProperties">
+			<props>
+				<!-- 如果要使用用户名和密码验证,这一步需要 -->
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 简单的邮件 message -->
+	<bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+		<property name="to" value="674422038@qq.com" />
+		<property name="from" value="baizhi_bj@sina.com" />
+		<property name="subject" value="测试邮件" />
+		<property name="text" value="测试 Spring 发送 Email 的功能，请勿回复！" />
+	</bean>
+	
+	<bean id="mimeMessage" factory-bean="sender" factory-method="createMimeMessage"/>
+	
+	<bean id="mmHelper" class="org.springframework.mail.javamail.MimeMessageHelper" scope="prototype">
+		<constructor-arg index="0" ref="mimeMessage" />
+		<constructor-arg index="1" type="boolean" value="true"/>
+		<constructor-arg index="2" type="java.lang.String" value="UTF-8"/>
+        <!-- 
+		<property name="subject" value="测试发送富文本邮件(包括附件)------------1" />
+		<property name="text" value="&lt;h1&gt;测试 Spring 发送 Email 的功能，请勿回复===！&lt;/h1&gt;" />
+		<property name="to" value="674422038@qq.com" />
+		<property name="from" value="baizhi_bj@sina.com" />
+		<property name="priority" value="1" />
+         -->
+	</bean>
+
+</beans>   
