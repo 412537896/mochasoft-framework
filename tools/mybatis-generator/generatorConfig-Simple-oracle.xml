@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+  
+  
+<generatorConfiguration>  
+  <!-- 数据库驱动 -->    
+  <classPathEntry location="G:/myibatisGen/driver/oracle11g/11.1.0.7.0_ojdbc6.jar" />
+  <!-- db2 
+  <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />
+  -->
+    
+  <!-- targetRuntime:生成代码的运行环境。ibatis2所以选择Ibatis2Java5
+  <context id="ORACLETables" targetRuntime="Ibatis2Java5"> 
+		targetRuntime:生成代码的运行环境。DB2和MyBatis3
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+  -->
+  <context id="Oracle11Tables" targetRuntime="MyBatis3Simple">  	  
+		<!-- oracle数据库配置 -->  
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"  
+			connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:fk"  
+			userId="fk"  
+			password="123456">  
+		</jdbcConnection>  
+		
+		<!-- db2数据库配置 
+		<jdbcConnection driverClass="COM.ibm.db2.jdbc.app.DB2Driver"
+        connectionURL="jdbc:db2:TEST"
+        userId="db2admin"
+        password="db2admin">
+		</jdbcConnection>
+		-->
+		
+		<!-- mysql数据库配置 
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"  
+			connectionURL="jdbc:mysql://localhost:3306/framework?useUnicode=true&amp;characterEncoding=UTF-8"  
+			userId="root"  
+			password="root">  
+		</jdbcConnection>  
+		--> 
+		<javaTypeResolver >  
+		  <property name="forceBigDecimals" value="false" />  
+		</javaTypeResolver>  
+	  
+	  
+		<!-- model配置 -->  
+		<javaModelGenerator targetPackage="com.mochasoft.fk.security.entity" targetProject="ProjectSimple\">  
+		  <property name="enableSubPackages" value="true" />  
+		  <property name="trimStrings" value="true" />  
+		</javaModelGenerator>  
+	  
+	  
+		<!-- dao配置 -->  
+		<sqlMapGenerator targetPackage="com.mochasoft.fk.security.mapper"  targetProject="ProjectSimple\">  
+		  <property name="enableSubPackages" value="true" />  
+		</sqlMapGenerator>  
+	  
+		<!-- file:///G:/myibatisGen/docs/configreference/javaClientGenerator.html -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.mochasoft.fk.security.mapper"  targetProject="ProjectSimple\">  
+		  <property name="enableSubPackages" value="true" />  
+		</javaClientGenerator>  
+	  
+	  
+		<!-- 数据库表配置  --> 		 
+		<table tableName="MOCHA_SECU_USER" domainObjectName="User">  
+			<columnOverride  column="user_id" property="userId"/>
+		</table>
+		<table tableName="MOCHA_SECU_ROLE" domainObjectName="Role">  
+			<columnOverride  column="role_name" property="roleName"/>  
+			<columnOverride  column="role_desc" property="roleDesc"/>
+		</table>
+		<table tableName="MOCHA_SECU_RESOURCE" domainObjectName="Resource">  
+			<columnOverride  column="res_type" property="resType"/>  
+			<columnOverride  column="res_desc" property="resDesc"/>
+		</table>
+		<table tableName="mocha_secu_role_resource" domainObjectName="RoleResource">  
+			<columnOverride  column="role_id" property="roleId"/>
+			<columnOverride  column="res_id" property="resId"/>  
+		</table>
+		<table tableName="mocha_secu_role_user" domainObjectName="RoleUser">  
+			<columnOverride  column="role_id" property="roleId"/>  
+			<columnOverride  column="acc_id" property="accId"/>
+		</table>
+		<!-- db2 
+		<table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
+		  <property name="useActualColumnNames" value="true"/>
+		  <generatedKey column="ID" sqlStatement="DB2" identity="true" />
+		  <columnOverride column="DATE_FIELD" property="startDate" />
+		  <ignoreColumn column="FRED" />
+		  <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+		</table>
+		-->
+  </context>  
+</generatorConfiguration> 
