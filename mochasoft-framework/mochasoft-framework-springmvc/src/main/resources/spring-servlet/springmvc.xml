@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<!-- 自动扫描且只扫描@Controller--> 
+	<context:component-scan base-package="com.mochasoft" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<!-- Resolver是一种展示策略, viewClass对应展示处理,  InternalResourceViewResolver对jsp、jstl的支持好 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 默认值为下面的，所以不用配置 
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+		 -->
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 国际化 -->
+    <bean id="messageSource"  
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
+        <property name="basenames">  
+            <list>  
+                <value>message/mess</value>  
+            </list>  
+        </property>  
+    </bean> 
+
+	<!-- 拦截器配置 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- path什么都不写为拦截所有URL 
+			<mvc:mapping path=""/>
+			-->
+			<!-- /admin/**为拦截admin及以admin开头的所有URL，如 /admin/user/add/test.do -->
+			<!-- /admin/*为拦截admin开头下一级URL，如 /admin/user.do -->
+			<!-- 注意：以上2种配置都不能拦截/test/admin/user.do这样的请求 -->
+			<mvc:mapping path="/admin/**"/>
+			<bean class="com.mochasoft.example.inteceptor.MyInteceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	</beans>

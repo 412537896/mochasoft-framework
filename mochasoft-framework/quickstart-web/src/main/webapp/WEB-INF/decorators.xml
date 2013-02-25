@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!-- SiteMesh的配置文件 --> 
+<decorators defaultdir="/WEB-INF/layouts/">
+	<!-- 此处用来定义不需要过滤的页面 --> 
+	<excludes>
+		<pattern>/static/*</pattern>
+		<pattern>/cxf/*</pattern>
+		<pattern>/api/*</pattern>
+		<pattern>/login*.do</pattern>
+	</excludes>
+	<!-- 用来定义装饰器要过滤的页面 -->
+	<decorator name="default" page="default.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	<decorator name="none">
+          <!-- These files will not get decorated. -->
+         <pattern>/anotherdir/*</pattern>
+    </decorator>
+</decorators>
