@@ -80,6 +80,8 @@
 		<httpclient.version>4.2.2</httpclient.version>
 		<freemarker.version>2.3.19</freemarker.version>
 		<junit.version>4.11</junit.version>
+		<spymemcached.version>2.8.4</spymemcached.version>
+		
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -553,6 +555,14 @@
 				<scope>test</scope>
 			</dependency>
 			<!-- TEST end -->
+			
+			<!-- spymemcached begin -->
+			<dependency>
+				<groupId>com.google.code.simple-spring-memcached</groupId>
+				<artifactId>spymemcached</artifactId>
+				<version>${spymemcached.version}</version>
+			</dependency>
+			<!-- spymemcached end -->
 		</dependencies>
 	</dependencyManagement>
 
