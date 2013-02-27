@@ -22,15 +22,11 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 	
-	<!-- 国际化
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <beans:property name="basename" value="org/springframework/security/messages" />
+	<!-- 定义国际化消息 --> 
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
+        <property name="basename" value="message/mess"/>
     </bean>
     
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="i18n/messages"></property>
-	</bean>
-	-->
 	<!-- 拦截器配置 
 	<mvc:interceptors>
 		<mvc:interceptor>
