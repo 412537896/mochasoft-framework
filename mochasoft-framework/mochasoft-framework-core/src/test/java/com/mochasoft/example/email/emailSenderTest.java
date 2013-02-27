@@ -54,7 +54,7 @@ public class emailSenderTest {
         email.addCc("4012508@qq.com", "王洪恩");
         email.addBcc("hemingwang0902@126.com", "");
         email.setContent("<h3>此邮件是由系统自动发送</h3>，<span style='color:#f00'>请勿回复！</span><br><img src='http://www.mochasoft.com.cn/about_mocha/images/cp.jpg'>");
-        email.addAttachment(new File("/src/test/resources/MyBatisConfiguration.xml"));
+        email.addAttachment(new File("src/test/resources/MyBatisConfiguration.xml"));
         email.setPriority(Priority.HIGH);
         email.setReceipt(true);
         emailSender.send(email);

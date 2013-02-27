@@ -25,14 +25,14 @@
 		<property name="text" value="测试 Spring 发送 Email 的功能，请勿回复！" />
 	</bean>
 	
-	<bean id="mimeMessage" factory-bean="sender" factory-method="createMimeMessage"/>
+	<bean id="mimeMessage" factory-bean="sender" factory-method="createMimeMessage" scope="prototype"/>
 	
 	<bean id="mmHelper" class="org.springframework.mail.javamail.MimeMessageHelper" scope="prototype">
 		<constructor-arg index="0" ref="mimeMessage" />
 		<constructor-arg index="1" type="boolean" value="true"/>
 		<constructor-arg index="2" type="java.lang.String" value="UTF-8"/>
         <!-- 
-		<property name="subject" value="测试发送富文本邮件(包括附件)------------1" />
+		<property name="subject" value="测试发送富文本邮件(包括附件) - 1" />
 		<property name="text" value="&lt;h1&gt;测试 Spring 发送 Email 的功能，请勿回复===！&lt;/h1&gt;" />
 		<property name="to" value="674422038@qq.com" />
 		<property name="from" value="baizhi_bj@sina.com" />
