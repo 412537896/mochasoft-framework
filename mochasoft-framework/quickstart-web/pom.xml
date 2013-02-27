@@ -203,6 +203,13 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- TEST end -->
+		
+		<!-- spymemcached begin -->
+		<dependency>
+			<groupId>com.google.code.simple-spring-memcached</groupId>
+			<artifactId>spymemcached</artifactId>
+		</dependency>
+		<!-- spymemcached end -->
 	</dependencies>
 
 	<build>
