@@ -33,8 +33,9 @@ public class TestConfiguration {
 	}
 	
 	@Test
-	public void testSelectAll(){
-		List<Configuration> list = service.selectAll();
-		System.out.println(list.size());
+	public void testSelectByKey(){
+		//List<Configuration> list = service.selectAll();
+		String configuration = service.selectByKey("key1");
+		System.out.println(configuration);
 	}
 }

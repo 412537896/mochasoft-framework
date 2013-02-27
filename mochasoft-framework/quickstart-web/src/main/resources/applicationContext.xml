@@ -5,4 +5,5 @@
 	<description>导入applicationContext文件列表</description>
 	<import resource="spring-conf/applicationContext.xml" />
 	<import resource="spring-security/applicationContext-security.xml" />
+	<import resource="spring-cache/applicationContext-memcached.xml"/>
 </beans>

@@ -46,4 +46,8 @@ public interface ConfigurationMapper {
      * @mbggenerated Tue Jan 29 17:16:49 CST 2013
      */
     int updateByPrimaryKey(Configuration record);
+    
+    Configuration selectByKey(String key);
+    
+    int deleteByKey(String key);
 }

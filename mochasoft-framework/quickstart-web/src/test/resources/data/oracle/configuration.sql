@@ -8,10 +8,10 @@
   CREATE TABLE "MOCHA_SECU_CONFIGURATION" 
    (  
     "ID" CHAR(36), 
-  "TYPE" CHAR(36), 
-  "KEY" VARCHAR2(1000), 
-  "VALUE" VARCHAR2(2000), 
-  "LASTUPDATETIME" NUMBER(13,0)
+  	"TYPE" CHAR(36), 
+  	"KEY" VARCHAR2(1000), 
+  	"VALUE" VARCHAR2(2000), 
+  	"LASTUPDATETIME" NUMBER(13,0)
    );
 
 --------------------------------------------------------

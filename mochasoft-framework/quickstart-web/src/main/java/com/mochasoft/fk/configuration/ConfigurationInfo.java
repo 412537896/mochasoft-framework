@@ -73,6 +73,7 @@ public class ConfigurationInfo {
 	 * 之所以用map，是考虑有可能从properties文件中读入键值对时，可复用此方法
 	 */
 	private void getAllConfigInfo(){
+		service.flushCacheAll();
 		List<Configuration> list = service.selectAll();
 		config.put("dbconfig", list);
 		log.info(list.size()+"");
