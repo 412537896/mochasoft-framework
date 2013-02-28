@@ -1,5 +1,7 @@
 package com.mochasoft.fk.test.memcached;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,14 @@ public class SpringMemcachedTest {
 		System.out.println(configuration);
 		long end = System.currentTimeMillis();
 		
-		System.out.println("test:" + (end - start));
+		System.out.println("test1:" + (end - start));
+		
+		long start1 = System.currentTimeMillis();
+		String configuration1 = service.selectByKey("key1");
+		System.out.println(configuration1);
+		long end1 = System.currentTimeMillis();
+		
+		System.out.println("test1:" + (end1 - start1));
 		
 	}
 	
@@ -39,19 +48,41 @@ public class SpringMemcachedTest {
 	@Test
 	public void testAdd(){
 		Configuration entity = new Configuration();
-		entity.setKey("key6");
-		entity.setValue("value6");
+		entity.setKey("key7");
+		entity.setValue("value7");
 		entity.setType("1");
 		entity.setLastupdatetime(System.currentTimeMillis());
 		service.add(entity);
 	}
 	
 	@Test
-	public void testUpdate(){
-		Configuration entity = service.selectByPrimaryKey("6972b632-50cc-45de-8f56-547bed2e2063");
-		entity.setValue("value9");
-		entity.setLastupdatetime(System.currentTimeMillis());
-		service.update(entity);
+	public void testSelectByPrimaryKey(){
+		long start = System.currentTimeMillis();
+		Configuration entity = service.selectByPrimaryKey("bb2749b0-5f89-48e0-a3a3-7c23da045452");
+		long end = System.currentTimeMillis();
+		System.out.println(end - start);
+		//entity.setValue("value9");
+		//entity.setLastupdatetime(System.currentTimeMillis());
+		//service.update(entity);
+		long start1 = System.currentTimeMillis();
+		service.selectByPrimaryKey("bb2749b0-5f89-48e0-a3a3-7c23da045452");
+		long end1 = System.currentTimeMillis();
+		System.out.println(end1 - start1);
+	}
+	
+	@Test
+	public void testSelectAll(){
+		long start = System.currentTimeMillis();
+		List configuration = service.selectAll();
+		long end = System.currentTimeMillis();
+		
+		System.out.println("test1:" + (end - start));
+		
+		long start1 = System.currentTimeMillis();
+		List configuration1 = service.selectAll();
+		long end1 = System.currentTimeMillis();
+		
+		System.out.println("test1:" + (end1 - start1));
 	}
 	
 	@Test
