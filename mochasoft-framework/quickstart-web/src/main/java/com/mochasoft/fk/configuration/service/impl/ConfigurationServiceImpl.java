@@ -23,7 +23,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 
 	@Override
 	@Transactional
-	@CachePut(value = "memCache", key = "#entity.key")
+	@CachePut(value="ehcache", key="#entity.key")
 	public String add(Configuration entity) {
 		entity.setId(UUID.randomUUID().toString());
 		mapper.insert(entity);
@@ -32,7 +32,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 
 	@Override
 	@Transactional
-	@CachePut(value = "memCache", key = "#entity.key")
+	@CachePut(value="ehcache", key="#entity.key")
 	public String update(Configuration entity) {
 		mapper.updateByPrimaryKey(entity);
 		return entity.getValue();
@@ -40,32 +40,33 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 
 	@Override
 	@Transactional
-	@CacheEvict(value = "memCache", key = "#id")
+	@CacheEvict(value="ehcache", key="#id")
 	public int deleteByPrimaryKey(String id) {
 		return mapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	@Cacheable(value = "memCache", key = "#id")
+	@Cacheable(value="memcache", key="#id")
 	public Configuration selectByPrimaryKey(String id) {
 		return mapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
+	@Cacheable(value="memcache", key="123")
 	public List<Configuration> selectAll() {
 		return mapper.selectAll();
 	}
 
 	@Override
-	@CacheEvict(value = "memCache", allEntries = true)
+	@CacheEvict(value = "memcache", allEntries = true)
 	public void flushCacheAll() {
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	@Cacheable(value = "memCache", key = "#key")
+	@Cacheable(value="memcache", key="#key")
 	public String selectByKey(String key) {
 		Configuration configuration = mapper.selectByKey(key);
 		return configuration.getValue() == null
@@ -75,7 +76,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 
 	@Override
 	@Transactional
-	@CacheEvict(value = "memCache", key = "#key")
+	@CacheEvict(value = "ehcache", key = "#key")
 	public void deleteByKey(String key) {
 		mapper.deleteByKey(key);
 	}

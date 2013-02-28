@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.mochasoft.fk.cache.memcached.MemConfigurationInfo;
 import com.mochasoft.fk.configuration.ConfigurationInfo;
 import com.mochasoft.fk.configuration.service.IConfigurationService;
 import com.mochasoft.fk.configuration.service.impl.ConfigurationServiceImpl;
-import com.mochasoft.fk.memcached.MemConfigurationInfo;
 
 public class ConfigurationInitServlet extends HttpServlet {
 	
