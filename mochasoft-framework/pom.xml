@@ -81,6 +81,7 @@
 		<freemarker.version>2.3.19</freemarker.version>
 		<junit.version>4.11</junit.version>
 		<spymemcached.version>2.8.4</spymemcached.version>
+		<oscache.version>2.4.1</oscache.version>
 		
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -572,6 +573,29 @@
                 <version>${javamail.version}</version>
             </dependency>
             <!-- javamail end -->
+            
+            <!-- ehcache-web begin -->
+            <dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache-web</artifactId>
+				<version>2.0.4</version>
+			</dependency>
+            <!-- encache-web end -->
+            
+            <!-- oscache begin -->
+            <dependency>
+        		<groupId>opensymphony</groupId>
+        		<artifactId>oscache</artifactId>
+        		<version>${oscache.version}</version>
+        		<!-- This excludes the transitive dependency on JMS -->
+        		<exclusions>
+                	<exclusion>
+                        <groupId>javax.jms</groupId>
+                        <artifactId>jms</artifactId>
+                	</exclusion>
+        		</exclusions>
+			</dependency>
+			<!-- oscache end -->
 		</dependencies>
 	</dependencyManagement>
 
