@@ -210,6 +210,18 @@
 			<artifactId>spymemcached</artifactId>
 		</dependency>
 		<!-- spymemcached end -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>oscache</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
