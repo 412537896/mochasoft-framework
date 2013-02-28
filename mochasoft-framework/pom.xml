@@ -563,6 +563,14 @@
 				<version>${spymemcached.version}</version>
 			</dependency>
 			<!-- spymemcached end -->
+            
+            <!-- javamail begin -->
+            <dependency>
+                <groupId>javamail</groupId>
+            <artifactId>mail</artifactId>
+                <version>${javamail.version}</version>
+            </dependency>
+            <!-- javamail end -->
 		</dependencies>
 	</dependencyManagement>
 
