@@ -6,4 +6,5 @@
 	<import resource="spring-conf/applicationContext.xml" />
 	<import resource="spring-security/applicationContext-security.xml" />
 	<import resource="spring-cache/applicationContext-memcached.xml"/>
+	<import resource="spring-email/applicationContext-email.xml"/>
 </beans>
