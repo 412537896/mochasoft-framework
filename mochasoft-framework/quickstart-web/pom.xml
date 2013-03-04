@@ -116,6 +116,11 @@
 			<artifactId>commons-dbcp</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>c3p0</groupId>
+	        <artifactId>c3p0</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<!-- db driver -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -221,6 +226,12 @@
 		<dependency>
 			<groupId>opensymphony</groupId>
 			<artifactId>oscache</artifactId>
+		</dependency>
+		
+		<!-- email -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -73,19 +73,16 @@
 		<property name="minIdle" value="${xz.jdbc.minIdle}" />
 	</bean>
 	
-	<!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
-	<bean id="dataSourceHN" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="${hn.jdbc.driver}" />
-		<property name="url" value="${hn.jdbc.url}" />
-		<property name="username" value="${hn.jdbc.username}" />
-		<property name="password" value="${hn.jdbc.password}" />
-		<property name="defaultAutoCommit" value="false" />
-		<property name="initialSize" value="${hn.jdbc.initialSize}" />
-		<property name="maxActive" value="${hn.jdbc.maxActive}" />
-		<property name="maxWait" value="${hn.jdbc.maxWait}" />
-		<property name="maxIdle" value="${hn.jdbc.maxIdle}" />
-		<property name="minIdle" value="${hn.jdbc.minIdle}" />
-	</bean>
+	<!-- 数据源配置,使用应用内的C3p0数据库连接池 -->
+	<bean id="dataSourceHN" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${hn.jdbc.driver}"/>
+        <property name="jdbcUrl" value="${hn.jdbc.url}"/>
+        <property name="user" value="${hn.jdbc.username}"/>
+        <property name="password" value="${hn.jdbc.password}"/>
+	    <property name="initialPoolSize" value="${hn.jdbc.initialSize}"/>
+	    <property name="maxPoolSize" value="${hn.jdbc.maxIdle}"/>
+	    <property name="minPoolSize" value="${hn.jdbc.minIdle}"/>
+    </bean>
 	
 	<bean id="dataSource" class="com.mochasoft.fk.db.DynamicDataSource">
       <property name="targetDataSources">
