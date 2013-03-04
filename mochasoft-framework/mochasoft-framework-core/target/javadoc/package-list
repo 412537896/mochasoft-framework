@@ -1,9 +1,0 @@
-com.mochasoft.fk
-com.mochasoft.fk.constant
-com.mochasoft.fk.db
-com.mochasoft.fk.db.page
-com.mochasoft.fk.exception
-com.mochasoft.fk.interceptor
-com.mochasoft.fk.mapper
-com.mochasoft.fk.service
-com.mochasoft.fk.utils
