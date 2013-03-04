@@ -68,6 +68,8 @@
 		<commons-lang3.version>3.1</commons-lang3.version>
 		<commons-io.version>2.4</commons-io.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<c3p0.version>0.9.1.2</c3p0.version>
+		
 		<commons-Collections.version>3.1</commons-Collections.version>
 		<guava.version>13.0.1</guava.version>
 		<joda-time.version>2.1</joda-time.version>
@@ -202,6 +204,18 @@
 				<version>${commons-dbcp.version}</version>
 				<scope>runtime</scope>
 			</dependency>
+			<dependency>
+	            <groupId>c3p0</groupId>
+	            <artifactId>c3p0</artifactId>
+	            <version>${c3p0.version}</version>
+	        </dependency>
+	        <!-- 
+			<dependency>
+	            <groupId>c3p0</groupId>
+	            <artifactId>c3p0-oracle-thin-extras</artifactId>
+	            <version>${c3p0.version}</version>
+	        </dependency>
+	         -->
 			<!-- db driver -->
 			<dependency>
 				<groupId>mysql</groupId>
