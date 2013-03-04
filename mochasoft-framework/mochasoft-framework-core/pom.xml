@@ -197,7 +197,7 @@
 		</dependency>
 		<!-- TEST end -->
 		<dependency>
-		    <groupId>javamail</groupId>
+		    <groupId>javax.mail</groupId>
 		    <artifactId>mail</artifactId>
 		</dependency>
 	</dependencies>
@@ -218,11 +218,11 @@
 				</executions>
 			</plugin>
 			--> 
-			<!-- javadoc插件
+			<!-- javadoc插件-->
 			<plugin>
 				 <groupId>org.apache.maven.plugins</groupId> 
 			     <artifactId>maven-javadoc-plugin</artifactId> 
-			</plugin> -->
+			</plugin> 
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
