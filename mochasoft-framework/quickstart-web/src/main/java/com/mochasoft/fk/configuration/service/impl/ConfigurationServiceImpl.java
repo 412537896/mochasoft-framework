@@ -47,26 +47,26 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 
 	@Override
 	@Transactional(readOnly = true)
-	@Cacheable(value="memcache", key="#id")
+	@Cacheable(value="ehcache")
 	public Configuration selectByPrimaryKey(String id) {
 		return mapper.selectByPrimaryKey(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	@Cacheable(value="memcache", key="123")
+	@Cacheable(value="ehcache")
 	public List<Configuration> selectAll() {
 		return mapper.selectAll();
 	}
 
 	@Override
-	@CacheEvict(value = "memcache", allEntries = true)
+	@CacheEvict(value = "ehcache", allEntries = true)
 	public void flushCacheAll() {
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	@Cacheable(value="memcache", key="#key")
+	@Cacheable(value="ehcache", key="#key")
 	public String selectByKey(String key) {
 		Configuration configuration = mapper.selectByKey(key);
 		return configuration.getValue() == null
