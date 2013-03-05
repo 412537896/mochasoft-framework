@@ -2,6 +2,10 @@ package com.mochasoft.fk.test.memcached;
 
 import java.util.List;
 
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.CacheManager;
+import net.sf.ehcache.Element;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,8 @@ public class SpringMemcachedTest {
 	@Autowired
 	IConfigurationService service;
 	
+	CacheManager manager = null;
+	
 	@Test
 	public void testSelectByKey() throws Exception{
 		long start = System.currentTimeMillis();
@@ -33,6 +39,7 @@ public class SpringMemcachedTest {
 		long end1 = System.currentTimeMillis();
 		
 		System.out.println("test1:" + (end1 - start1));
+		
 		
 	}
 	
@@ -68,6 +75,16 @@ public class SpringMemcachedTest {
 		service.selectByPrimaryKey("bb2749b0-5f89-48e0-a3a3-7c23da045452");
 		long end1 = System.currentTimeMillis();
 		System.out.println(end1 - start1);
+		
+		if(manager == null){
+			manager = CacheManager.getInstance();
+		}
+		
+		Cache cache = manager.getCache("ehcache");
+		List list = cache.getKeys();
+		String element = (String) list.get(0);
+//		Object value = element.getObjectValue();
+		System.out.println(element);
 	}
 	
 	@Test
@@ -83,6 +100,20 @@ public class SpringMemcachedTest {
 		long end1 = System.currentTimeMillis();
 		
 		System.out.println("test1:" + (end1 - start1));
+		
+		service.selectByPrimaryKey("bb2749b0-5f89-48e0-a3a3-7c23da045452");
+		
+		service.selectByKey("key1");
+		
+		if(manager == null){
+			manager = CacheManager.getInstance();
+		}
+		
+		Cache cache = manager.getCache("ehcache");
+		List list = cache.getKeys();
+		Object element = (Object) list.get(0);
+//		Object value = element.getObjectValue();
+		System.out.println(list.size());
 	}
 	
 	@Test
