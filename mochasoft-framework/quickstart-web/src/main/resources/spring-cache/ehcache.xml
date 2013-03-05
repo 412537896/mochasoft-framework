@@ -1,4 +1,4 @@
-<ehcache>
+<ehcache updateCheck="false">
 
     <!-- Sets the path to the directory where cache .data files are created.
 
@@ -64,18 +64,25 @@
         diskExpiryThreadIntervalSeconds="120"/> 
         
     <cache name="ehcache"
-            maxElementsInMemory="10000"
-            eternal="false"
-            timeToIdleSeconds="200"
-            timeToLiveSeconds="300"
-            overflowToDisk="true"
-            />
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="200"
+        timeToLiveSeconds="300"
+        overflowToDisk="true"/>
     
-   <cache name="SimplePageCachingFilter" 
+   	<cache name="SimplePageCachingFilter" 
         maxElementsInMemory="10000" 
         eternal="false"
         overflowToDisk="false" 
-        timeToIdleSeconds="900" 
-        timeToLiveSeconds="1800"
+        timeToIdleSeconds="9" 
+        timeToLiveSeconds="18"
+        memoryStoreEvictionPolicy="LFU" />
+        
+    <cache name="ehcache1" 
+        maxElementsInMemory="10000" 
+        eternal="false"
+        overflowToDisk="false" 
+        timeToIdleSeconds="9" 
+        timeToLiveSeconds="18"
         memoryStoreEvictionPolicy="LFU" />
 </ehcache>
