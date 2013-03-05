@@ -65,7 +65,7 @@ public class ConfigurationInfo {
 	 */
 	public void reloadAll(){
 		config.clear();
-		getAllConfigInfo();
+		//getAllConfigInfo();
 	}
 	
 	/**
