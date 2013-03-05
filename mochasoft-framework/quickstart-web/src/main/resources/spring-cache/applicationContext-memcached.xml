@@ -37,33 +37,40 @@
 		<property name="failureMode" value="${failureMode}"/>
 		<property name="useNagleAlgorithm" value="${useNagleAlgorithm}"/>
 	</bean>
-	<!--  
-	<bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:/spring-cache/ehcache.xml"></property>
-	</bean>-->
 	
-	<!-- cacheManager工厂类 -->
 	<bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
-    	p:configLocation="classpath:/spring-cache/ehcache.xml"
-    	p:shared="false" /> 
+     p:configLocation="classpath:/spring-cache/ehcache.xml"
+     p:shared="false" />
 
-	<!-- 声明cacheManager  -->
+
+	<!-- 声明cacheManager -->
+
 	<bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
-   		p:cacheManager-ref="cacheManagerFactory"/>
+	   p:cacheManager-ref="cacheManagerFactory"/>
    		
 	<!-- spring cache管理接口  -->
 	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager"> 
 		<!-- 注入各个cache客户端，使用name来区分，亦可按照功能来分割--> 
 		<property name="caches">
 			<set>
+				<!-- Memcached注入 -->
 				<bean class="com.mochasoft.fk.cache.memcached.MemcachedCache">
 		          <property name="name" value="memcache" />
 		          <property name="client" ref="memcachedClient"/>
 		          <property name="expiry" value="3600" />
 		      	</bean>
-		      	<!-- -->
+		      	<bean class="com.mochasoft.fk.cache.memcached.MemcachedCache">
+		          <property name="name" value="memcache1" />
+		          <property name="client" ref="memcachedClient"/>
+		          <property name="expiry" value="3600" />
+		      	</bean>
+		      	<!-- Ehcache注入 -->
 		      	<bean class="com.mochasoft.fk.cache.ehcache.EhcacheCache">
 		      		<property name="name" value="ehcache" />
+		      		<property name="cacheManager" ref="ehcacheManager" />
+		      	</bean> 
+		      	<bean class="com.mochasoft.fk.cache.ehcache.EhcacheCache">
+		      		<property name="name" value="ehcache1" />
 		      		<property name="cacheManager" ref="ehcacheManager" />
 		      	</bean> 
 			</set>
