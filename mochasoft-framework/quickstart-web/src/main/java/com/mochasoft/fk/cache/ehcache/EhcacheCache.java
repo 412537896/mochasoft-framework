@@ -11,6 +11,7 @@ public class EhcacheCache implements Cache {
 	
 	private AbstractCacheManager cacheManager;
 	private String name;
+	private Cache cache;
 	
 	public EhcacheCache() {
 	}
@@ -30,26 +31,36 @@ public class EhcacheCache implements Cache {
 
 	@Override
 	public ValueWrapper get(Object key) {
-		return getCache().get(key);
+		log.debug("get" + key);
+		ValueWrapper wrapper = getCache().get(key);
+//		if(wrapper.get() == null){
+//			return null;
+//		}
+		return wrapper;
 	}
 
 	@Override
 	public void put(Object key, Object value) {
+		log.debug("put" + key + " : " + value);
 		getCache().put(key, value);
 	}
 
 	@Override
 	public void evict(Object key) {
+		log.debug("evict" + key);
 		getCache().evict(key);
 	}
 
 	@Override
 	public void clear() {
+		log.debug("clear");
 		getCache().clear();
 	}
 	
 	private Cache getCache() {
-		return cacheManager.getCache(name);
+		log.debug(name);
+		cache = cacheManager.getCache(name);
+		return cache;
 	}
 
 	public void setName(String name) {
