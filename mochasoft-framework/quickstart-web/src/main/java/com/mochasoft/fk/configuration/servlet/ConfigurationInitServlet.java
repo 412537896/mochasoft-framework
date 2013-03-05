@@ -10,10 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.mochasoft.fk.cache.ehcache.EhcacheConfigurationInfo;
 import com.mochasoft.fk.cache.memcached.MemConfigurationInfo;
-import com.mochasoft.fk.configuration.ConfigurationInfo;
-import com.mochasoft.fk.configuration.service.IConfigurationService;
-import com.mochasoft.fk.configuration.service.impl.ConfigurationServiceImpl;
 
 public class ConfigurationInitServlet extends HttpServlet {
 	
@@ -23,32 +21,40 @@ public class ConfigurationInitServlet extends HttpServlet {
 	
 	private static WebApplicationContext springContext;  
     private ServletContext _servletContext;//这个是为了取servletContext
-    private IConfigurationService service;
+    
+    private String cacheName;
 	
 	public ConfigurationInitServlet() {
 	}
 	
 	@Override
 	public void init() throws ServletException {
+		if(log.isInfoEnabled())
+			log.info("初始化配置信息");
 		initSpringContext();
+		cacheName = this.getInitParameter("cacheName");
 		
-		//1.放入Map中存内存
-		ConfigurationInfo.getInstance().setService(service);
-		ConfigurationInfo.getInstance().reloadAll();
+		if(cacheName != null){
+			if(cacheName.equals("memcached")){
+				//放memcacehd中
+				MemConfigurationInfo memInfo = new MemConfigurationInfo(springContext);
+				memInfo.putAllConfigToMemcached();
+				
+			} else {
+				EhcacheConfigurationInfo ehcacheInfo = new EhcacheConfigurationInfo(springContext);
+				ehcacheInfo.putAllConfigToMemcached();
+			}
+		} else {
+			//默认放到ehcache
+			EhcacheConfigurationInfo ehcacheInfo = new EhcacheConfigurationInfo(springContext);
+			ehcacheInfo.putAllConfigToMemcached();
+		}
 		
-		//2.放memcacehd中
-		MemConfigurationInfo memInfo = new MemConfigurationInfo(springContext);
-		memInfo.putAllConfigToMemcached();
 	}
 	
 	private void initSpringContext(){
-		if(log.isInfoEnabled())
-			log.info("初始化配置信息");
 		_servletContext = this.getServletContext();
 		springContext = WebApplicationContextUtils.getWebApplicationContext(_servletContext);
-		service = springContext.getBean(ConfigurationServiceImpl.class);
 	}
 
-	
-	
 }
