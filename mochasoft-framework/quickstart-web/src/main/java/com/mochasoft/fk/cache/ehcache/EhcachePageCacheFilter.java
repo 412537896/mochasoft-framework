@@ -6,26 +6,38 @@ import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.constructs.blocking.LockTimeoutException;
 import net.sf.ehcache.constructs.web.AlreadyCommittedException;
 import net.sf.ehcache.constructs.web.AlreadyGzippedException;
+import net.sf.ehcache.constructs.web.filter.CachingFilter;
 import net.sf.ehcache.constructs.web.filter.FilterNonReentrantException;
-import net.sf.ehcache.constructs.web.filter.SimplePageCachingFilter;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.cache.support.AbstractCacheManager;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
-public class EhcachePageCacheFilter extends SimplePageCachingFilter {
+public class EhcachePageCacheFilter extends CachingFilter {
 	
 	private static final Logger log = LoggerFactory.getLogger(EhcachePageCacheFilter.class);
 	
 	private final static String FILTER_URL_PATTERNS = "patterns";
 	private static String[] cacheURLs;
 	
-	private void init() {
-		String patterns = filterConfig.getInitParameter(FILTER_URL_PATTERNS);
-		cacheURLs = StringUtils.split(patterns, ",");
+	private CacheManager cacheManager;
+	
+	public void doInit() {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(filterConfig.getServletContext());
+		EhCacheCacheManager manager = (EhCacheCacheManager) context.getBean("ehcacheManager");
+		cacheManager = manager.getCacheManager();
+	}
+	
+	@Override
+	protected String getCacheName() {
+		return "SimplePageCachingFilter";
 	}
 	
 	@Override
@@ -34,21 +46,19 @@ public class EhcachePageCacheFilter extends SimplePageCachingFilter {
 			throws AlreadyGzippedException, AlreadyCommittedException,
 			FilterNonReentrantException, LockTimeoutException, Exception {
 		
-		if(cacheURLs == null)
-			init();
 		
 		String url = request.getRequestURI();
-		boolean flag = false;
+		boolean flag = true;
 		
 		//判断是否包含需要拦截的URL
-		if(cacheURLs != null && cacheURLs.length > 0){
+		/*if(cacheURLs != null && cacheURLs.length > 0){
 			for(String cacheURL : cacheURLs){
 				if(url.contains(cacheURL.trim())){
 					flag = true;
 					break;
 				}
 			}
-		}
+		}*/
 		
 		//包含需要拦截的URL，从缓存中调用，为空则执行正常页面
 		if(flag){
@@ -90,6 +100,23 @@ public class EhcachePageCacheFilter extends SimplePageCachingFilter {
     protected boolean acceptsGzipEncoding(HttpServletRequest request) {
         boolean ie6 = headerContains(request, "User-Agent", "MSIE 6.0");
         boolean ie7 = headerContains(request, "User-Agent", "MSIE 7.0");
-        return acceptsEncoding(request, "gzip") || ie6 || ie7;
+        //return acceptsEncoding(request, "gzip") || ie6 || ie7;
+        return false;
     }
+
+	@Override
+	protected CacheManager getCacheManager() {
+		if(cacheManager == null){
+			doInit();
+		}		
+		return cacheManager;
+	}
+
+	@Override
+	protected String calculateKey(HttpServletRequest httpRequest) {
+		StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(httpRequest.getMethod()).append(httpRequest.getRequestURI()).append(httpRequest.getQueryString());
+        String key = stringBuffer.toString();
+		return key;
+	}
 }
