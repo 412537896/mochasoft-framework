@@ -19,7 +19,7 @@
 	
 	<cache:annotation-driven cache-manager="cacheManager"/>
 	
-	<!-- memcached客户端 -->
+	<!-- memcached客户端 
 	<bean id="memcachedClient" class="net.spy.memcached.spring.MemcachedClientFactoryBean">
 		<property name="servers" value="${servers}"/>
 		<property name="protocol" value="${protocol}"/>
@@ -36,7 +36,7 @@
 		<property name="locatorType" value="${locatorType}"/> 
 		<property name="failureMode" value="${failureMode}"/>
 		<property name="useNagleAlgorithm" value="${useNagleAlgorithm}"/>
-	</bean>
+	</bean>-->
 	
 	<bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
      p:configLocation="classpath:/spring-cache/ehcache.xml"
@@ -53,17 +53,17 @@
 		<!-- 注入各个cache客户端，使用name来区分，亦可按照功能来分割--> 
 		<property name="caches">
 			<set>
-				<!-- Memcached注入 -->
+				<!-- Memcached注入
 				<bean class="com.mochasoft.fk.cache.memcached.MemcachedCache">
 		          <property name="name" value="memcache" />
 		          <property name="client" ref="memcachedClient"/>
 		          <property name="expiry" value="3600" />
-		      	</bean>
+		      	</bean> 
 		      	<bean class="com.mochasoft.fk.cache.memcached.MemcachedCache">
 		          <property name="name" value="memcache1" />
 		          <property name="client" ref="memcachedClient"/>
 		          <property name="expiry" value="3600" />
-		      	</bean>
+		      	</bean>-->
 		      	<!-- Ehcache注入 -->
 		      	<bean class="com.mochasoft.fk.cache.ehcache.EhcacheCache">
 		      		<property name="name" value="ehcache" />
