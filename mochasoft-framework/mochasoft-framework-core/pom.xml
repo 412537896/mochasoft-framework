@@ -236,7 +236,7 @@
 				</executions>
 			</plugin>
 			--> 
-			<!-- javadoc插件-->
+			<!-- javadoc插件
 			<plugin>
 				 <groupId>org.apache.maven.plugins</groupId> 
 			     <artifactId>maven-javadoc-plugin</artifactId> 
@@ -247,7 +247,7 @@
                 <configuration>
                     <skip>true</skip>
                 </configuration>
-            </plugin>
+            </plugin>-->
 		</plugins>
 	</build>
 </project>
