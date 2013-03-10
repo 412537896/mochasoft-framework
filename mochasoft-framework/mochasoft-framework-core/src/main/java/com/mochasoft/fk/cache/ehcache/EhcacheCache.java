@@ -19,7 +19,7 @@ public class EhcacheCache implements Cache {
 	@Override
 	public String getName() {
 		if(name == null){
-			return "defalut";
+			return "ehcache";
 		}
 		return name;
 	}
@@ -31,7 +31,7 @@ public class EhcacheCache implements Cache {
 
 	@Override
 	public ValueWrapper get(Object key) {
-		log.debug("get" + key);
+		log.debug("get:" + key);
 		ValueWrapper wrapper = getCache().get(key);
 //		if(wrapper.get() == null){
 //			return null;
@@ -41,13 +41,13 @@ public class EhcacheCache implements Cache {
 
 	@Override
 	public void put(Object key, Object value) {
-		log.debug("put" + key + " : " + value);
+		log.debug("put:" + key + " | " + value);
 		getCache().put(key, value);
 	}
 
 	@Override
 	public void evict(Object key) {
-		log.debug("evict" + key);
+		log.debug("evict:" + key);
 		getCache().evict(key);
 	}
 
