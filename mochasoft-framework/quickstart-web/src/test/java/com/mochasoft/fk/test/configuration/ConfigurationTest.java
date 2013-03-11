@@ -1,20 +1,17 @@
 package com.mochasoft.fk.test.configuration;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.annotation.DirtiesContext;
 
 import com.mochasoft.fk.configuration.entity.Configuration;
 import com.mochasoft.fk.configuration.service.IConfigurationService;
+import com.mochasoft.fk.test.spring.SpringTransactionalTestCase;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:/spring-conf/*.xml", "classpath:/spring-servlet/*.xml", "classpath:/spring-security/*.xml"})
-public class TestConfiguration {
+@DirtiesContext
+public class ConfigurationTest extends SpringTransactionalTestCase {
 	
 	@Autowired
 	private IConfigurationService service;

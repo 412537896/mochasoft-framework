@@ -4,20 +4,17 @@ import java.util.List;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
-import net.sf.ehcache.Element;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.annotation.DirtiesContext;
 
 import com.mochasoft.fk.configuration.entity.Configuration;
 import com.mochasoft.fk.configuration.service.IConfigurationService;
+import com.mochasoft.fk.test.spring.SpringTransactionalTestCase;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:applicationContext.xml"})
-public class SpringMemcachedTest {
+@DirtiesContext
+public class SpringMemcachedTest extends SpringTransactionalTestCase {
 	
 	@Autowired
 	IConfigurationService service;
