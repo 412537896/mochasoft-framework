@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS `t_userinfo`;
+DROP TABLE t_userinfo;
 
-CREATE TABLE `t_userinfo` (
+CREATE TABLE t_userinfo (
   `id` int(8) NOT NULL,
   `username` varchar(50) default NULL,
   `password` varchar(50) default NULL,

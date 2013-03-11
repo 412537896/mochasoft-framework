@@ -2,9 +2,11 @@ package com.mochasoft.fk.test.spring;
 
 import javax.sql.DataSource;
 
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * <strong>Title : SpringTransactionalTestCase </strong>. <br>
@@ -25,6 +27,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
  * <br>
  * <br>
  */
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/applicationContext.xml"})
 public abstract class SpringTransactionalTestCase extends AbstractTransactionalJUnit4SpringContextTests {
 

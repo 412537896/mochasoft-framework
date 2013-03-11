@@ -1,31 +1,26 @@
-package com.mochasoft.example.email;
+package com.mochasoft.fk.email;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 
-import javax.annotation.Resource;
 import javax.mail.MessagingException;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.annotation.DirtiesContext;
 
-import com.mochasoft.fk.email.Email;
-import com.mochasoft.fk.email.EmailSender;
-import com.mochasoft.fk.email.Priority;
+import com.mochasoft.fk.test.spring.SpringTransactionalTestCase;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:applicationContext-email.xml" })
-public class emailSenderTest {
-    @Resource
+@DirtiesContext
+public class EmailSenderTest extends SpringTransactionalTestCase {
+    @Autowired
     private SimpleMailMessage simpleMailMessage;
-    @Resource
+    @Autowired
     private MimeMessageHelper mmHelper;
-    @Resource
+    @Autowired
     private EmailSender emailSender;
     
     @Test
@@ -54,7 +49,7 @@ public class emailSenderTest {
         email.addCc("4012508@qq.com", "王洪恩");
         email.addBcc("hemingwang0902@126.com", "");
         email.setContent("<h3>此邮件是由系统自动发送</h3>，<span style='color:#f00'>请勿回复！</span><br><img src='http://www.mochasoft.com.cn/about_mocha/images/cp.jpg'>");
-        email.addAttachment(new File("src/test/resources/MyBatisConfiguration.xml"));
+        email.addAttachment(new File("src/test/resources/applicationContext.xml"));
         email.setPriority(Priority.HIGH);
         email.setReceipt(true);
         emailSender.send(email);
