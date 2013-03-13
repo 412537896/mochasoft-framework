@@ -5,7 +5,7 @@ echo [Info] Please add "-Declipse.workspace=<path-to-eclipse-workspace>" at end 
 cd %~dp0
 cd ..
 
-set path=%M2_HOME%/bin;%windir%/system32;%path%
+set path=%MAVEN_HOME%/bin;%windir%/system32;%path%
 call mvn -Declipse.workspace=%cd% eclipse:clean eclipse:eclipse
 
 cd bin
