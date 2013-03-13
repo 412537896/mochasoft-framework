@@ -15,42 +15,25 @@
 		<url>http://www.mochasoft.com.cn</url>
 	</organization>
 
-
+<!--
 	<modules>
 		<module>mochasoft-framework-core</module>
-		<!-- <module>mochasoft-framework-springmvc</module> -->
+		 <module>mochasoft-framework-springmvc</module> 
 		<module>quickstart-java</module>
 		<module>quickstart-web</module>
 	</modules>
-	
-	<!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
-	<repositories>
-		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. <repository> <id>nexus</id> <name>Team 
-			Nexus Repository</name> <url>http://localhost:8081/nexus/content/groups/public</url> 
-			</repository> -->
-		<repository>
-			<id>central</id>
-			<name>Central Repository</name>
-			<url>http://repo.maven.apache.org/maven2</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>spy</id>
-			<name>Spy Repository</name>
-			<url>http://files.couchbase.com/maven2/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-
-	<!-- 设定插件仓库 如有Nexus私服, 取消注释并指向正确的服务器地址. <pluginRepositories> <pluginRepository> 
-		<id>nexus</id> <name>Team Nexus Repository</name> <url>http://localhost:8081/nexus/content/groups/public</url> 
-		<snapshots> <enabled>false</enabled> </snapshots> </pluginRepository> </pluginRepositories> -->
-
+	-->
+	<distributionManagement>  
+       <repository>  
+           <id>nexus-releases</id>  
+           <url>http://127.0.0.1:8081/nexus/content/repositories/releases/</url>  
+       </repository>  
+         
+       <snapshotRepository>  
+           <id>nexus-snapshot</id>  
+           <url>http://127.0.0.1:8081/nexus/content/repositories/snapshots/</url>  
+       </snapshotRepository>  
+  </distributionManagement>
 	<properties>
 		<!-- 主要依赖库的版本定义 -->
 		<mochasoft-framework-core.version>0.8-SNAPSHOT</mochasoft-framework-core.version>
