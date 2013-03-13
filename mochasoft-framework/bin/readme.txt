@@ -1,5 +1,5 @@
-1¡¢ÉèÖÃ»·¾³±äÁ¿MAVEN_HOME£¬ÀıÈç£º¡°MAVEN_HOME=I:\maven\apache-maven-3.0.4¡±
+ï»¿1ã€è®¾ç½®ç¯å¢ƒå˜é‡MAVEN_HOMEï¼Œä¾‹å¦‚ï¼šâ€œMAVEN_HOME=I:\maven\apache-maven-3.0.4â€
 
-2¡¢Éú³ÉeclipseÏîÄ¿½á¹¹£ºeclipse.bat
+2ã€ç”Ÿæˆeclipseé¡¹ç›®ç»“æ„ï¼šeclipse.bat
 
-3¡¢´ò°ü³ÌĞò£ºinstall.bat
+3ã€æ‰“åŒ…ç¨‹åºï¼šinstall.bat
