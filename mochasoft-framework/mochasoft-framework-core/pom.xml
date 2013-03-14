@@ -4,12 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mochasoft</groupId>
-		<artifactId>mochasoft-framework-project</artifactId>
+		<artifactId>mochafk-parent</artifactId>
 		<version>0.8-SNAPSHOT</version>
+		<relativePath>../parent/</relativePath>
 	</parent>
-	<artifactId>mochasoft-framework-core</artifactId>
+	<artifactId>mochafk-core</artifactId>
 	<packaging>jar</packaging>
-	<name>mochasoft-framework :: Module :: Core</name>
+	<name>mochasoft-framework :: Core</name>
 
 	<dependencies>
 		<!-- SPRING begin -->

@@ -4,18 +4,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mochasoft</groupId>
-		<artifactId>mochasoft-framework-project</artifactId>
+		<artifactId>mochafk-parent</artifactId>
 		<version>0.8-SNAPSHOT</version>
+		<relativePath>../parent/</relativePath>
 	</parent>
 
-	<artifactId>mochasoft-framework-quickstart-web</artifactId>
+	<artifactId>mochafk-quickstart-web</artifactId>
 	<packaging>war</packaging>
 	<name>mochasoft-framework :: Sample :: quickstart-web</name>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.mochasoft</groupId>
-			<artifactId>mochasoft-framework-core</artifactId>
+			<artifactId>mochafk-core</artifactId>
 		</dependency>
 		<!-- SPRING begin -->
 		<dependency>
