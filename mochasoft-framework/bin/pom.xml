@@ -27,19 +27,26 @@
 			              	<property name="basedir" value="." />
 			                <property name="parent.dir" value="${basedir}/.." /> 
 			                <property name="dist.dir" value="${parent.dir}/dist" /> 
-			                <property name="dist.fk.dir" value="${dist.dir}/fk" /> 
-			                <property name="dist.fk.java.dir" value="${dist.fk.dir}/java" /> 
-			                <property name="dist.fk.web.dir" value="${dist.fk.dir}/web" /> 
+			                <property name="dist.sample.dir" value="${dist.dir}/sample" /> 
+
 			                 
 			                <echo>+---------------------ant------------------+${dist.dir}</echo>
 			                 <delete dir="${dist.dir}" />
 			                 <mkdir dir="${dist.dir}" />
-			                 <mkdir dir="${dist.fk.dir}" />
-							 <copy file="${parent.dir}/parent/pom.xml" todir="${dist.fk.dir}"/>
-							 
-							 <mkdir dir="${dist.fk.java.dir}" />
-							 <mkdir dir="${dist.fk.web.dir}" />
- 			                 
+			                 <mkdir dir="${dist.sample.dir}" />
+			                 
+			                 <copy todir="${dist.sample.dir}">
+					           <fileset dir="${parent.dir}/sample">
+					             <include name="*/**" />
+					           </fileset>
+					       	</copy>
+			                 
+					       	<mkdir dir="g:/sample" />
+					       	<copy todir="g:/sample">
+					           <fileset dir="${dist.sample.dir}">
+					             <include name="*/**" />
+					           </fileset>
+					       	</copy>
 			              </tasks>  
 			            </configuration>  
 			           </execution>  
